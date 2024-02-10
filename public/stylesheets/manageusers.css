@@ -1,0 +1,133 @@
+body {
+    font-family: 'Roboto Mono';
+    background-image: linear-gradient(#8cd1cb,#5c4aab);
+    height: 100vh;
+}
+
+.navbar {
+    margin: 15px;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    font-size: 100%;
+    color: black;
+    text-align: center;
+    padding: 15px 2vw;
+    text-decoration: none;
+}
+
+.navbar .dropdown {
+    float: right;
+}
+
+.dropdown .dropbutton {
+    font-size: 100%;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: inherit;
+    font-family: inherit;
+    padding: 15px 2vw;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown:hover .dropbutton {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdownmenu {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+}
+
+.dropdownmenu a {
+    display: block;
+    text-align: left;
+    width: 155px;
+}
+
+.dropdown:hover .dropdownmenu {
+    display: block;
+}
+
+.dropdownmenu a:hover {
+    background-color: white;
+}
+
+.search {
+    height: 30px;
+    width: 60%;
+    font-size: 120%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#table {
+    border: solid;
+    height: 55vh;
+    width: 60%;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.username {
+    width: 220px;
+}
+
+.firstname {
+    width: 150px;
+}
+
+.lastname {
+    width: 150px;
+}
+
+.email {
+    width: 350px;
+}
+
+.admin {
+    width: 80px;
+}
+.managebutton {
+    font-weight: bold;
+    width: 150px;
+}
+
+td {
+    text-align: center;
+    height: 40px;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+tr:hover {
+    background-color: #D6EEEE;
+}
+
+td {
+    background-color: white;
+}
+
+td:last-child {
+    background-color: rgb(210,210,210);
+}
+
+th {
+    background-color: rgb(210,210,210);
+}

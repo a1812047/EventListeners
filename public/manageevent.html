@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/manageevent.css">
+    <link rel="stylesheet"  type="text/css" href="stylesheets/mainpage.css">
+    <link rel="stylesheet"  type="text/css" href="style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listeners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&effect=fire" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d0e8f615cc.js" crossorigin="anonymous"></script>
+    <script src="javascripts/vue.js" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="navbar">
+            <p v-bind:class="{ 'active': HomePage }" onclick="Myapp.displayContent(0)"><i class="fas fa-home"></i>&nbsp;Home</p> 
+            <p >Manage Events</p>
+            <p>Manage Users</p>
+            <div class="dropdown">
+                <button style="margin-top: 10%;" class="dropbutton"><i class="fas fa-user"></i>&nbsp;Username&nbsp;<i class="fa fa-caret-down"></i></button>
+                <div class="dropdownmenu">
+                    <p  @click = "goToProfileSettings">Manage profile</p>
+                    <p  @click = "goToSettings">Settings</p>
+                </div>
+            </div>
+        </div>
+        <h1>&nbsp;&nbsp;&nbsp;Manage Events</h1>
+        <br \>
+        <div style="text-align:center;">
+        <input type="text" placeholder="Search event by name.." class="search">
+        </div>
+        <br \>
+        <div id="table">
+            <table>
+                <tr class="headings">
+                    <th class="eventname">Event Name</th>
+                    <th class="eventdate">Date</th>
+                    <th class="starttime">Start Time</th>
+                    <th class="endtime">End Time</th>
+                    <th class="eventlocation">Location</th>
+                    <th class="numbergoing">Number Attending</th>
+                    <th class="eventstatus">Status</th>
+                    <th class="managebutton"></th>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+                <tr>
+                    <td><a href="#event1">Event1</a></td>
+                    <td>31 Febrary 2099</td>
+                    <td>18:00</td>
+                    <td>22:00</td>
+                    <td>a location</td>
+                    <td>99999</td>
+                    <td>Cancelled</td>
+                    <td class="managebutton">Manage</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

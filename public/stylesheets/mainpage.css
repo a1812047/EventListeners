@@ -1,0 +1,134 @@
+
+.navbar p {
+    float: left;
+    font-size: 100%;
+    color: black;
+    text-align: center;
+    padding: 0.8rem 0.8rem ;
+    text-decoration: none;
+    margin:0rem;
+}
+
+.navbar .dropdown {
+    float: right;
+    
+}
+
+.dropbutton {
+    font-size: 100%;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: inherit;
+    font-family: inherit;
+    padding:0.8rem 0.8rem;
+}
+
+.navbar p:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.dropdown:hover .dropbutton {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdownmenu {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    
+}
+
+.dropdownmenu p {
+    margin:0;
+    display: block;
+    text-align: left;
+    min-width: 160px;
+    max-width: 200px;
+}
+
+.dropdown:hover .dropdownmenu {
+    display: block;
+}
+
+.dropdownmenu p:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.eventContainer {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 1%;
+    margin-bottom: 2rem;
+}
+
+.eventinfo {
+    background-color: rgba(255, 255, 255, 0.2);
+    float: left;
+    font-size: 85%;
+    font-weight: bold;
+    margin: 5px;
+    line-height: 5pt;
+    padding: 1px;
+    width: 200px;
+}
+
+.eventimg {
+    width:10rem;
+    height:10rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+   
+}
+
+.viewmorebutton {
+    text-align:center;
+    font-size: 140%;
+    margin-left: auto;
+    order: 2;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+}
+.eventimg:hover{
+    cursor: pointer;
+}
+.viewmorebutton:hover{
+    cursor: pointer;
+    background-color:  rgba(225, 220, 220,0.3);
+   
+}
+
+legend {
+    background-color: white;
+    border-style: solid;
+    font-size: 110%;
+}
+
+.active{
+    background-color: rgb(220, 180, 0);
+    border-radius: 1rem;
+}
+.eventDiv{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+}
+.eventpagebutton{
+    font-size:2.2vw;
+    border-radius:0.7vw;
+    padding:0.6vw;
+    transition-duration: 0.4s;
+}
+
+.eventpagebutton:hover {
+    background-color: rgb(110, 200, 175);
+    color: white;
+}
+
+.eventDiv p{
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,71 @@
+body{
+    height: 120vh;
+}
+
+#main{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    position: relative;
+    justify-content: center;
+    max-width: 1500px;
+    font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#Login, #SignUp{
+    width: 50% ;
+    height: 100%;
+    padding : 2rem;
+}
+#Login{
+    text-align: end;
+}
+#SignUp{
+    color: rgb(106, 80, 255);
+    border-left: salmon solid 1px;
+    
+}
+.marginBottom{
+    margin-bottom: 5%;
+}
+.inputfields{
+    border: black solid 0.5px;
+    border-radius: 0.25rem;
+    padding: 3%;
+    width: 55%;
+}
+label{
+    color: white;
+}
+#Facebook.inputfields{
+    background-color: rgb(13, 100, 214);
+    padding: 3%;
+    color: white;
+    border-color: aliceblue;
+    width: 60%;
+}
+#Google.inputfields{
+    border-color: aliceblue;
+    width: 60%;
+}
+
+.Loginbutton{
+  background-color: rgb(189, 5, 250); 
+  border-radius: 1rem;
+  padding: 3%;
+  
+  width: max-content; 
+  color:aliceblue;
+  border-style: solid;
+  box-shadow: rgb(83, 124, 137);
+}
+
+.g_id_signin{
+    
+    padding: 3%;
+    margin-left: 35%;
+}
+
+.red{
+    color: red;
+}
+

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listeners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&effect=fire" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d0e8f615cc.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="javascripts/vue.js" defer></script>  
+</head>
+<body  onload = "Myapp.getInfo();" >
+<div id = "app"  >
+    <div class="navbar">
+        <p v-bind:class="{ 'active': HomePage }" onclick="Myapp.displayContent(0)"><i class="fas fa-home"></i>&nbsp;Home</p>  
+        <p v-bind:class="{ 'active': Create }"  style="color:brown" onclick="Myapp.displayContent(1)" @click = "displayMe(0)"><i class="fas fa-star"></i>&nbsp;Create</p>
+        <div class="dropdown" style="float:left;">
+            <button  class="dropbutton"><i class="fas fa-calendar-alt"></i>&nbsp;Events&nbsp;<i class="fa fa-caret-down"></i></button>
+            <div class="dropdownmenu" style="text-align: center;">
+                <p style="text-align: center;" @click="displayContent(2)" >Going!</p>
+                <p style="text-align: center;" @click="displayContent(3)">Invited</p>
+                <p style="text-align: center;" @click="displayContent(4)">Created By U</p>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button  class="dropbutton"><i class="fas fa-user"></i>&nbsp;{{myusername}}&nbsp;<i class="fa fa-caret-down"></i></button>
+            <div class="dropdownmenu" style="right:0">
+                <p  @click = "goToProfileSettings">Manage profile</p><br>
+                <p  @click = "goToSettings">Settings</p><br>
+                <p @click = "logoutUser">Logout</p><br>
+            </div>
+        </div>
+    </div>
+    <div id = "leftPart" >
+        <h1><i id = "CurrentTopic" >{{leftPartval}}</i></h1>
+    </div>
+
+    <div class = "mainDivPosition">
+        
+        <div id = "create" v-if = "Create" >
+            <div id = "EventCreationSteps" class="displayBeside border" >
+                <button v-for = "(item, index) in createPageNavItems"   class="Breadcrumbs stepsButton"   @click="displayMe(index)">{{item.name}} </button>     
+            </div>
+            <div id = "BasicInfo" class = "CreateEventFont" v-if = "first" >
+                <h1>Basic Description</h1>
+                <hr>
+                <textarea id = "EventDescription" name="EventDescription"
+                rows="5" cols="55"
+                placeholder="Describe within 100 words key points about the events" class = "border" v-model = "Description" required></textarea>
+                <!--use vue.js to make sure it is in the bounds of our 100 words else print maximum limit exceeded -->
+                <br><br>
+                
+                <select name="Type of Event" id="EventCategory" class = "border left inputbox" v-model = "selected" placeholder = "Category" required>
+                    <option disabled selected>Type of Event</option>
+                    <option>Conference/Corporate</option>
+                    <option>Career Fair</option>
+                    <option>Lecture</option>
+                    
+                    <option>Get together</option>
+                    <option>Health</option>
+                    <option>Date</option>
+                    <option>Shopping</option>
+                    <option>Interview</option>
+                    <option>Wedding</option>
+                    <option>Others</option>
+                </select >
+                <input type="number" placeholder="number of attendees" name = "attendees" class="border inputbox" min="1" v-model = "numberOfattendees">
+    
+    
+                <!--radiobuttons-->
+                <div>
+                    <div id="radiobuttons" class="boxes left">
+                        <input type="radio" value="Private" name = "EventVisiblity" id = "private" v-model = "privateOrpublic">
+                        <label for = "private">Private</label><br>
+                        <input type="radio" value="Public" name = "EventVisiblity" id = "public" v-model = "privateOrpublic">
+                        <label for = "public">Public</label>
+                    </div>
+                    <div class = "boxes left">
+                        <input type="checkbox" name="Online" id="online" value = "Online" v-model = "checked" >
+                        <label for = "online">Online</label><br>
+                        <input type="checkbox" name="In-person" id="in-person" value = "In-person" v-model = "checked">
+                        <label for = "in-person">In-person</label><br>
+                        <input type="checkbox" name="Undecided" id="undecided" value = "Undecided" v-model = "checked">
+                        <label for = "Undecided">Not yet decided</label><br>
+
+                    </div>
+    
+                </div>
+                <br><br>
+                <label style="display: flex; float: left;">Event Name: 
+                    <input type="text" name = "eventName" v-model="EventName" class="border inputbox" style="width: 10rem;">
+                </label>
+                
+                <!--icon to upload the image
+                <div id = "image_box" class="border left boxUploadImage">
+                    <i class="fa-solid fa-cloud-arrow-up left uploadImage"></i>
+                    <i class="fa-solid fa-image left" id = "imgicon" >
+                        <input id= "upload_img" type = "file" accept="image/*" onchange="readURL(event)">
+                        <br>
+                        
+                    </i>
+                </div>-->
+                <div class="right bottom">
+                    <progress value="5" max="100"></progress>
+                    <button class = "next" @click = "displayMe(1)"> <span class = "Next">Next &#62 </span> </button>
+                </div>
+                <br>
+                
+            </div>
+        <!--Organiser Details-->
+            <div id = "Organiser Details" class="CreateEventFont" v-if="second">
+                <h1>Organiser Details:</h1>
+                <hr>
+                <select class="inputbox border">
+                    <option value="Title" selected disabled>Title</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="Dr.">Mr.</option>
+                    <option value="Mr.">Miss</option>
+                    <option value="Mr.">Not important</option>
+                </select>
+                <h3>Name: </h3>
+                <input type="text" placeholder="First Name" class="inputbox border" v-model = "FirstName">
+                <input type="text" placeholder="Last Name" class="inputbox border" v-model = "LastName">
+                <h3>Contact:</h3>
+                <input type="email" name="Email" placeholder="email@gmail.com" class="inputbox border emailinputbox" v-model = "Email">
+                <br>
+                <br>
+                <br>
+                <h3>Are there more than 1 organisers ? </h3>
+                <p>Send them this <em>link</em> to register them as organisers</p>
+                <div class="right bottom">
+                    <progress value="25" max="100"></progress>
+                    <button class = "next" @click = "displayMe(0)"> <span class = "Next">&#60 Back</span> </button>
+                    <button class = "next" @click = "displayMe(2)"> <span class = "Next">Next &#62 </span> </button>
+                </div>
+            </div>
+    
+        <!--Date and time-->
+            <div id = "Date and time" v-if="third" class="CreateEventFont">
+                <h1>Date/Time and Location:</h1>
+                <hr>
+                <div class="datetimepicker">
+                    <label for = "EventDate">Date:</label>
+                    <input id = "calendar" type="date" name="EventDate" class = "right inputbox border" @click="setMinDate" v-model = "EventDate" >
+                </div>
+                <br>
+                <div class="datetimepicker">
+                    <label for = "StartTime">StartTime:</label>
+                    <input type="time" name="Start Time" class = "right inputbox border" v-model = "StartTime">  
+                </div>
+                <br>
+                <div class="datetimepicker">
+                    <label for = "EndTime">EndTime:</label>
+                    <input type="time" name= "EndTime" class = "right inputbox border" v-model="EndTime" >  
+                </div>
+                <h1>Location: </h1>
+                <hr>
+                <a target="blank" href="https://www.google.com/maps">Click here to find the address on GoogleMaps</a>
+                <br>
+                <input type = "text" placeholder="Address1" class="inputbox border" v-model = "address.Address1">
+                <br>
+                <input type = "text" placeholder="CITY" class="inputbox border" v-model = "address.city">
+                <br>
+                <input type = "text" placeholder="STATE" class="inputbox border" v-model = "address.state">
+                <br>
+                <input type = "text" placeholder="COUNTRY" class="inputbox border" v-model = "address.country">
+                <br>
+                <input type = "text" placeholder="POSTCODE" class="inputbox border" v-model = "address.postcode">
+                <br>
+                
+    
+    
+                <div class="right">
+                    <progress value="50" max="100"></progress>
+                    <button class = "next" @click = "displayMe(1)"> <span class = "Next">&#60 Back</span> </button>
+                    <button class = "next" @click = "displayMe(3)"> <span class = "Next">Next &#62 </span> </button>
+                </div>
+                
+                
+                
+            </div>
+    
+            <div id = "Preview" v-if = "fourth">
+                <h1 class="CreateEventFont">Preview: </h1>
+                <ul class="space4word">
+                    <li><strong>Type of Event:    </strong> {{selected}}</li>
+                    <li><strong>Expected number of attendees:    </strong> {{numberOfattendees}}</li>
+                    <li><strong>Private/Public:    </strong> {{privateOrpublic}}</li>
+                    <li><strong>Online/In-person:    </strong><ul><li v-for = "checkedName in checked" >{{checkedName}}</li></ul></li>
+                    <li><strong>Full Name:    </strong> {{FirstName}} {{LastName}}</li>
+                    <li><strong>Contact details:    </strong> {{Email}}</li>
+                    <li><strong>Date:    </strong> {{EventDate}}</li>
+                    <li><strong>Time:    </strong> Starting at {{StartTime}} & Finishing at {{EndTime}}</li>
+                    <li><strong>Event Location:    </strong> {{address.Address1}} {{address.city}} {{address.state}} {{address.country}} {{address.postcode}}</li>
+    
+                </ul>
+                <div class="right">
+                    <progress value="100" max="100"></progress>
+                    <button class = "next" @click = "displayMe(2)"> <span class = "Next">&#60 Back</span> </button>
+                    <button type="submit" class = "next" @click="OncreateEvent"> <span class = "Next">Create Event</span> </button>
+                </div>
+    
+            </div>
+        </div>
+
+
+
+        <div v-else-if = "HomePage === true">
+            <fieldset class="eventContainer">
+                <legend>Events I'm Going to: </legend>
+                <div v-for="(item,index) in EventGoingTo" class = "StandOut">
+                    <div v-if= "index < 4" class="textem" @click="showEvent(index)">
+                        <img v-bind:src="item.imageURL" alt="Image of the Event" class="eventimg" >
+                        <hr>
+                        <p style="text-transform: uppercase; text-align: center; font-size: small; background-color: rgb(200, 123, 23); padding: 1rem;">{{item.title}}</p>
+                        <p>Starts at: <span class = "right">{{item.Date}} {{item.startTime}}</span></p>
+                        <p>{{item.Location}}</p>
+                        <p>Expected guests: {{item.NumOfAttendees}}</p>
+                    </div>
+                </div>
+                <p v-if="EventGoingTo.length == 0"><em>No upcoming events.</em></p>
+                <div class="viewmorebutton" @click="displayContent(0)" v-if="EventGoingTo.length >= 3 ">
+                    <p><i class="fas fa-arrow-alt-circle-right fa-3x"></i></p>
+                    <p>View More</p>
+                </div>
+            </fieldset>  
+            <fieldset class="eventContainer">
+                <legend>Events I'm Invited to: </legend>
+                <div v-for="(item,index) in EventInvitedTo" class = "StandOut">
+                    <div v-if= "index < 4" class="textem" @click="showEvent(index)">
+                        <img v-bind:src="item.imageURL" alt="Image of the Event" class="eventimg" >
+                        <hr>
+                        <p style="text-transform: uppercase; text-align: center; font-size: small; background-color: rgb(200, 123, 23); padding: 1rem;">{{item.title}}</p>
+                        <p>Starts at: <span class = "right">{{item.Date}} {{item.startTime}}</span></p>
+                        <p>{{item.Location}}</p>
+                        <p>Expected guests: {{item.NumOfAttendees}}</p>
+                    </div>
+                </div>
+                <p v-if="EventInvitedTo.length == 0"><em>No invitations pending.</em></p>
+                <div class="viewmorebutton" @click="displayContent(1)" v-if="EventInvitedTo.length >= 3 ">
+                    <p><i class="fas fa-arrow-alt-circle-right fa-3x"></i></p>
+                    <p>View More</p>
+                </div>
+            </fieldset>
+            <fieldset class="eventContainer">
+                <legend>CreatedEvents: </legend>
+                <div v-for="(item,index) in CreatedEvents" class = "StandOut">
+                    <div v-if= "index < 4" class="textem" @click="editCreatedEvent(index);" onclick = "setTimeout(Myapp.goToeventPage,500);">
+                        <img v-bind:src="item.imageURL" alt="Image of the Event" class="eventimg" >
+                        <hr>
+                        <p style="text-transform: uppercase; text-align: center; font-size: small; background-color: rgb(200, 123, 23); padding: 1rem;">{{item.title}}</p>
+                        <p>Starts at: <span class = "right">{{item.Date}} {{item.startTime}}</span></p>
+                        <p>{{item.Location}}</p>
+                        <p>Expected guests: {{item.NumOfAttendees}}</p>
+                    </div>
+                </div>
+                <p>
+                    <p  v-if="CreatedEvents.length < 3" class= "activeHere" onclick="Myapp.displayContent(1)" @click = "displayMe(0)">
+                        <i class="fas fa-star"></i>&nbsp;Create a new Event</p>
+                </p>
+                <div class="viewmorebutton" @click="displayContent(2)" v-if="CreatedEvents.length >= 3 ">
+                    <p><i class="fas fa-arrow-alt-circle-right fa-3x"></i></p>
+                    <p>View More</p>
+                </div>
+            </fieldset> 
+            
+        </div>
+        <div id = "ProfileSettings" v-else-if="ProfileSettings">
+            <h1>{{FirstName}} {{LastName}}</h1>
+            <p><strong>Username: </strong>{{myusername}}</p>
+            <p><strong>Profile Name:</strong>{{ProfileName}} <button onclick = "document.getElementById('changeName').style.display = 'inline';">Change Profile Name </button></p>
+            
+            <br>
+            
+            <div id = "changeName" style="display: none;"><span style="font-style:italic; ">Enter your new Profile Name:</span><br>
+                <input type="text" class="inputbox border" name = "Profile_Name" v-model = "newProfileName"> 
+                <span><u onclick="ProfileNameSaved()">Save</u> <u onclick="ProfileNameNotSaved()">Cancel</u></span>
+            </div>
+            <p><strong>Email:</strong> <span id = "emailDisp">{{Email}}</span>         
+                  <button onclick="changeEmail(this)">Edit email</button></p>   
+            <u v-if="Confirmation" style = "color: blue;">Profile Name Changed</u>
+            <u v-if="ConfirmEmailMsg" style = "color: blue;">Email Changed</u>
+
+        </div>
+        <div id = "Settings"  v-else-if = "Settings">
+            <div>
+                <h2>Email Preferences</h2>
+                <hr>
+                <h3>Attending Events</h3>
+                <input type="checkbox" id="attending1" name="attending1">
+                <label for="attending1"> Receive emails about changes to events I am going to attend or invited to.</label><br >
+                <input type="checkbox" id="attending2" name="attending2">
+                <label for="attending2"> Receive email notifications from the event organiser for events I am going</label><br >
+                <input type="checkbox" id="attending3" name="attending3">
+                <label for="attending3"> Receive weekly Discover emails from Event Listeners.</label><br >
+                <input type="checkbox" id="attending4" name="attending4">
+                <label for="attending4"> Unsubscribe from all attendee related emails.</label><br >
+                <h3>Organising Events</h3>
+                <input type="checkbox" id="organizing1" name="organizing1">
+                <label for="organizing1"> Receive important reminders for my next event</label><br >
+                <input type="checkbox" id="organizing2" name="organizing2">
+                <label for="organizing2"> Receive order from my Attendees</label><br >
+                <input type="checkbox" id="organizing3" name="organizing3">
+                <label for="attending3"> Receive Email Notifications about new followers</label><br >
+                <input type="checkbox" id="organizing4" name="attending4">
+                <label for="attending4"> Unsubscribe from all organizer related emails.</label><br >
+                </div>
+        </div>
+        <div v-else-if="eventPage"> 
+        
+            
+            <div class="eventDiv">
+                
+                    <div style="flex-direction: column; width: 45%;">
+                        <h3 style="font-size:2.2vw;">Event Details</h3>
+                        <p><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;{{eventDetails.EventDate}}</p>
+                        <p>Starts at: {{eventDetails.StartTime}}  Ends at: {{eventDetails.EndTime}}</p>
+                        <p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;&nbsp;{{eventDetails.Address1}}</p>
+                        <p>{{eventDetails.city}}, {{eventDetails.state}}, {{eventDetails.country}},{{eventDetails.postcode}}</p>
+                        <p><i class="fas fa-question-circle"></i>&nbsp;&nbsp;&nbsp;{{eventDetails.is_it_Online}} {{eventDetails.typeofEvent}}</p>
+                        <p style="font-size:1.3vw;">Organised by: {{eventDetails.Organiser}}</p>
+                        <p><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;{{eventDetails.numberOfattendees}} People expected</p>
+                    </div>
+                    <div style="flex-direction: column;">
+                        <img  title = "click to change Image" class="eventImage" v-bind:src="eventDetails.imageURL" alt="event image" style="width:100%; height:75%;margin-right:0">
+                    <form action="/uploadImage" enctype="multipart/form-data" method="post">
+                        <input type = "text" name = "eventID" disabled v-model="eventDetails.eventID">
+                        <input type="file" name="image" accept="image/*" ><br>
+                        <input type="submit" value="Upload">
+                    </form> 
+                    </div> 
+                    
+                    <div style="flex-direction: column; border:solid;word-wrap:break-word;padding:2rem;">
+                        <p style="font-size:1.5vw;">About the event: </p>
+                        <p style="font-size:1.4vw;">{{eventDetails.Description}}</p>
+                    </div> 
+            </div>   
+            <div >
+                    <p style="font-size:2.1vw;">Event Name: {{eventDetails.EventName}}   
+                        <button class="eventpagebutton" onclick="shareLink()">Copy EVENTS Link</button>           
+                    </p>
+                    
+                        
+                        <input id = "guestEmail" type = "text" oninput="checkEmail(value)" class = "emailinputbox border" placeholder="Enter email address of the guest to add">
+                        <button id = "addguest" title="click to add the guest list below." class="eventpagebutton" onclick="AddGuest()" disabled>ADD Guest to the list below</button>  
+                        <p id = "errorDisp" class = "red"></p>
+                    
+            </div>
+            <div>
+                <ul onchange="checkBut()">
+                    <li class = "grey" v-for="(item,index) in guestlist">{{item}}<button class="right" @click="deleteGuest(index)">X</button></li>
+                </ul>
+            </div>
+            <button id = "inviteButton" class="eventpagebutton" disabled onclick="InviteGuests()">Invite Them</button>
+            <div>
+                <p>Number of People available: </p><p id = "num_going"></p>
+                <div id = "user_going"></div>
+            </div>
+        </div>
+        <div id = "Going" v-else-if = "EventsList[0]">
+           <p v-if="CreatedEvents.length == 0">You are not going to any events rightnow.</p>
+        </div>
+        <div id = "Invited" v-else-if = "EventsList[1]"></div>
+        <div id = "Discover" v-else-if = "EventsList[2]"></div>
+        
+    </div>
+
+    
+
+    
+    
+</div>
+
+</body>
+</html>
+<!--AIzaSyB0bqzk4MJCee0RbdRNBra3JYz-mWoTjIk
+        -->
+        

@@ -1,0 +1,92 @@
+body {
+    height: 100vh;
+    background-image: linear-gradient(#8cd1cb,#5c4aab);
+    font-family: 'Roboto Mono';
+}
+
+.navbar {
+    margin: 15px;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    font-size: 90%;
+    color: black;
+    text-align: center;
+    padding: 15px 2vw;
+    text-decoration: none;
+}
+
+.navbar .dropdown {
+    float: right;
+}
+
+.dropdown .dropbutton {
+    font-size: 90%;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: inherit;
+    font-family: inherit;
+    padding: 15px 2vw;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown:hover .dropbutton {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdownmenu {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+}
+
+.dropdownmenu a {
+    display: block;
+    text-align: left;
+    width: 155px;
+}
+
+.dropdown:hover .dropdownmenu {
+    display: block;
+}
+
+.dropdownmenu a:hover {
+    background-color: white;
+}
+
+.eventDescleft{
+    width:30%;
+    float:left;
+    position:relative;
+    left:14%;
+}
+
+.eventDescright{
+    width:40%;
+    float:left;
+    position:relative;
+    left:17%;
+}
+
+.eventDetails{
+    font-size:1.9vw;
+}
+
+.eventpagebutton{
+    font-size:2.2vw;
+    border-radius:0.7vw;
+    padding:0.6vw;
+    transition-duration: 0.4s;
+}
+
+.eventpagebutton:hover {
+    background-color: rgb(110, 200, 175);
+    color: white;
+}
+

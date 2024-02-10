@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/loginPage.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Listeners</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sofia&effect=fire" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web" rel="stylesheet">
+        <script src="javascripts/login_Vue.js" defer></script>
+        <script src="https://kit.fontawesome.com/d0e8f615cc.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <meta name="google-signin-client_id" content="485231341035-2m7ghbg9kdptjtokvp2mccd2s79gnm3c.apps.googleusercontent.com">
+    </head>
+    <body>
+        <main id = "main">
+            <div id = "Login" >
+                <h1 >Log In</h1>
+                <span>{{login.errormsg}}</span>
+                <label for="username">Username</label><br>
+                <input type = "text" id = "username" placeholder="JohnDoe123" class="marginBottom inputfields" v-model="login.username" ><br>
+                <label for="password">Password</label><br>
+                <input type="password" id = "password" class="inputfields" v-model="login.password"><br>
+                <span>{{login.errormsg2}}</span>
+                <button class="Loginbutton" style="margin-top: 1rem;" @click="authUser">Log In</button>
+                <div id="g_id_onload"
+                data-client_id="485231341035-2m7ghbg9kdptjtokvp2mccd2s79gnm3c.apps.googleusercontent.com"
+                data-login_uri="http://localhost:3000/googleUser"
+                data-auto_prompt="true">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-size="large"
+                data-theme="outline"
+                data-text="sign_in_with"
+                data-shape="rectangular"
+                data-logo_alignment="right"
+                data-width="200"
+                >
+            </div>
+               
+            </div>
+            
+            <div id = "SignUp">
+                <h1><u>Sign Up</u></h1>
+                <label for="FirstName">FirstName</label><br>
+                <input type = "text" id = "FirstName" class="marginBottom inputfields" placeholder="John" v-model="firstName"><br>
+
+                <label for="LastName">LastName</label><br>
+                <input type="text" id = "LastName" class="marginBottom inputfields" placeholder="Doe" v-model = "lastName"><br>
+
+                <label for="Email">Email Address</label><i class="fas fa-check-circle" style="font-size:16px;color:lightgreen" v-if="emailAddress_check"></i>
+                <span class ="red marginBottom"><em>  {{email_msg}}</em></span><br>
+                <input type="email" id = "Email" class="marginBottom inputfields" placeholder="JaneDoe@example.com" v-model= "emailAddress" @change = "checkemail"><br>
+                
+                <label for="NewUsername">Username</label><i class="fas fa-check-circle" style="font-size:16px;color:lightgreen" v-if="Username_check"></i>
+                <span class="red marginBottom"><em>   {{alert_msg}}</em></span><br>
+                <input type = "text" id = "NewUsername" placeholder="Choose a unique username" class="inputfields" v-model="Username" @change="checkusername"><br> 
+                
+                <label for="NewUserPassword">Choose Password: </label><br>
+                <input type="password" id = "NewUserPassword" class="marginBottom inputfields" v-model="Password"><br>
+                <span class = "red" id = "error"></span>
+                <button class="Loginbutton" style=" margin-left: 10rem" @click="storeUserData" >Sign Up</button>
+            </div>
+            
+        </main>
+        
+    </body>
+</html>
